@@ -26,13 +26,16 @@ public class LiteraluraApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		LibroController libroController = new LibroController(libroRepository,autorRepository);
 		AutorController autorController = new AutorController(libroRepository,autorRepository);
-
+		boolean isOut= false;
+		while (!isOut) {
 		System.out.println("LITERALURA \n" +
 				"1- Buscar libro por titulo\n" +
 				"2- listar libros registrados\n" +
 				"3- listra autores registrador\n" +
 				"4- listar autores vivos en un determinado año\n" +
-				"5- listrar libros por idioma\n");
+				"5- listrar libros por idioma\n" +
+				"6- Salir");
+
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("Por favor, ingrese la opción: ");
 		int opcion = scanner.nextInt();
@@ -52,8 +55,13 @@ public class LiteraluraApplication implements CommandLineRunner {
 			case 5:
 				libroController.listarLibrosPorIdioma();
 				break;
+			case 6:
+				isOut=true;
+					break;
 			default:
 				System.out.println("Opción inválida");
 		}
+		}
+
 	}
 }
